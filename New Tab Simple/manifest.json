@@ -1,0 +1,16 @@
+{
+  "name": "Simple New Tab",
+  "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    },
+  "version": "1.2",
+  "manifest_version": 3,
+  "permissions": ["storage", "downloads", "search", "<all_urls>"],
+  "chrome_url_overrides": {
+    "newtab": "NewTab.html"
+  },
+  "background": {
+    "service_worker": ["background.js"]
+  }
+}

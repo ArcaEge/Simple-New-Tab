@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>New Tab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="material_icons.css">
+    <!-- <script src="jquery2.js"></script> -->
+    <script src="popper.js"></script>
+    <script src="bootstrap.js"></script>
+  </head>
+  <body>
+    <h1 id="txt" class="display-1" style="font-family: 'Roboto';"></h1>
+    <form id="form">
+      <input type="text" id="query"
+       placeholder="Search"
+       aria-label="Search">
+      <button id="searcher"><svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg></button>
+    </form>
+    <div>
+      <div>
+        <button type="button" class="btn" id="settings"><i class="material-icons">settings</i></button>
+      </div>
+      <div class="quote">
+        <blockquote class="blockquote container" id="blockquote">
+          <span style="color: white; font-size: 30px; font-family: 'Lily Script One', cursive; line-height: normal;">&ldquo; </span>
+          <p id="quote" style="color: white; font-size: 17px; line-height: normal; display: inline"></p>
+          <span style="color: white; font-size: 30px; font-family: 'Lily Script One', cursive; line-height: normal;"> &bdquo;</span>
+          <div id="author-footer"></div>
+          <footer class="blockquote-footer" id="author" style="color: #ababab; font-size: 14px"></footer>
+        </blockquote>
+      </div>
+        <p id="attribution" class="text-light small"></p><button id='download' class='btn btn-sm'><i class='material-icons text-light' style='font-size:19px'>&#xe2c4;</i></a>
+  </div>
+    <script src="time.js" charset="utf-8"></script>
+    <script src="quotes.js" charset="utf-8"></script>
+    <script src="bg.js" charset="utf-8"></script>
+    <style media="screen">
+      #txt{
+        text-align: center;
+        color: white;
+      }
+      .center{
+        text-align: center;
+      }
+      #blockquote {
+        position: absolute;
+        bottom: 1%;
+        left: 5%;
+      }
+      .row {
+        position: absolute;
+        bottom: 1%;
+        left: 5%;
+      }
+      #attribution {
+        position: absolute;
+        bottom: 0%;
+        right: 2%;
+        color: white;
+      }
+      #download {
+        position: absolute;
+        bottom: 0%;
+        padding-bottom: 0px;
+        right: 0%;
+        color: white;
+      }
+      #settings {
+        position: absolute;
+        bottom: 0;
+        left: 0%;
+        color: white;
+      }
+      body{
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+      }
+      .loader,
+      .loader:after {
+          border-radius: 50%;
+          width: 30em;
+          height: 30em;
+          position: absolute;
+          left: 0;
+          top: 25%;
+          text-align: center;
+      }
+      .loader {
+          margin: 60px auto;
+          font-size: 5px;
+          position: relative;
+          text-indent: -9999em;
+          border-top: 2em solid rgba(186, 186, 186, 0.2);
+          border-right: 2em solid rgba(186, 186, 186, 0.2);
+          border-bottom: 2em solid rgba(186, 186, 186, 0.2);
+          border-left: 2em solid #555;
+          -webkit-transform: translateZ(0);
+          -ms-transform: translateZ(0);
+          transform: translateZ(0);
+          -webkit-animation: load8 1.1s infinite linear;
+          animation: load8 1.6s infinite linear;
+      }
+      @-webkit-keyframes load8 {
+          0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+          }
+          100% {
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+          }
+      }
+      @keyframes load8 {
+          0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+          }
+          100% {
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+          }
+      }
+      #loadingDiv {
+          position:absolute;;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background-color:#fff;
+      }
+      #form {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 300px;
+        height: 44px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-55%);
+      }
+      input {
+        all: unset;
+        font: 16px system-ui;
+        color: #fff;
+        height: 100%;
+        width: 100%;
+        padding: 6px 10px;
+      }
+      ::placeholder {
+        color: #fff;
+        opacity: 0.7;
+      }
+      button {
+        all: unset;
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+      }
+
+      svg {
+        color: #fff;
+        fill: currentColor;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+      }
+    </style>
+  </body>
+</html>
