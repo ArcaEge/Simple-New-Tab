@@ -6,11 +6,14 @@
     },
   "version": "1.2",
   "manifest_version": 3,
-  "permissions": ["storage", "downloads", "search", "<all_urls>"],
+  "permissions": ["storage", "downloads", "search"],
   "chrome_url_overrides": {
     "newtab": "NewTab.html"
   },
+  "host_permissions": [
+    "*://*/*"
+  ],
   "background": {
-    "service_worker": ["background.js"]
+    "service_worker": "background.js"
   }
 }
