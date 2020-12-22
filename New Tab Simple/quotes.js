@@ -17,16 +17,6 @@ chrome.storage.local.get(['quotes'], function(data){
     //     return to_return;
     //   });
     // }
-
-    function show_quote(qt, thr){
-      document.getElementById('quote').innerHTML = qt
-      if (thr != undefined || thr != null) {
-        // document.getElementById('author-footer').innerHTML = '<footer class="blockquote-footer" id="author" style="color: #ababab"></footer>'
-        document.getElementById('author').innerHTML = thr
-      } else {
-        document.getElementById('author').innerHTML = "Unknown"
-      }
-    }
     chrome.storage.local.get(['quote', 'author', 'changeQuote', 'expires_date', 'expires_month', 'expires_year'], function(data){
       if (data.changeQuote == 2) {
         $(document).ready(function() {
@@ -77,3 +67,13 @@ chrome.storage.local.get(['quotes'], function(data){
     document.querySelector('.quote').remove()
   }
 })
+
+function show_quote(qt, thr){
+  document.getElementById('quote').innerHTML = qt
+  if (thr != undefined || thr != null) {
+    // document.getElementById('author-footer').innerHTML = '<footer class="blockquote-footer" id="author" style="color: #ababab"></footer>'
+    document.getElementById('author').innerHTML = thr
+  } else {
+    document.getElementById('author').innerHTML = "Unknown"
+  }
+}
