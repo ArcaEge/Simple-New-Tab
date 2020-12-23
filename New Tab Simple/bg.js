@@ -1,22 +1,29 @@
 var d;
 var dt;
 
+// Loader
+
 $('body').append('<div style="" id="loadingDiv"><div class="loader"></div></div>');
 $(window).on('load', function(){
   setTimeout(removeLoader, 0);
 });
+
 function removeLoader(){
     $("#loadingDiv").fadeOut(500, function() {
       $("#loadingDiv").remove();
   });
 }
 
+/* --------Background-------- */
+// Set Background
+
 function get_set(){
   chrome.storage.sync.get(['sync'], function(data) {
     if (data.sync) {
-      chrome.storage.sync.get(['url_img', 'description', 'download_url', 'html_url', 'user', 'username', 'expires_date', 'expires_month', 'expires_year', 'quotes'], get_set_sync);
+      console.log('hi')
+      chrome.storage.sync.get(['img_type', 'url_img', 'description', 'download_url', 'html_url', 'user', 'username', 'expires_date', 'expires_month', 'expires_year', 'quotes'], get_set_sync);
     } else {
-      chrome.storage.local.get(['url_img', 'description', 'download_url', 'html_url', 'user', 'username', 'expires_date', 'expires_month', 'expires_year', 'quotes'], get_set_local);
+      chrome.storage.local.get(['img_type', 'url_img', 'description', 'download_url', 'html_url', 'user', 'username', 'expires_date', 'expires_month', 'expires_year', 'quotes'], get_set_local);
     }
   });
 }
@@ -45,6 +52,7 @@ function get_set_local(data) {
 function get_set_sync(data) {
   var url = 'https://api.unsplash.com/photos/random?client_id=b-CX8HO3iHzUXewY5dAkVv0WE4pYJHzyGaZwEbvk5TM&content_filter=high&query=' + data.img_type;
   console.log(url);
+  console.log(data);
   $.getJSON(url, function (result) {
     d = new Date()
     chrome.storage.sync.set({'url_img': result.urls.full})
@@ -64,6 +72,8 @@ function get_set_sync(data) {
   });
 }
 
+// Get Background
+
 $(document).ready(function() {
   dt = new Date();
   chrome.storage.sync.get(['sync'], function (data) {
@@ -74,55 +84,11 @@ $(document).ready(function() {
     }
   })
 });
-document.querySelector("body").addEventListener("onresize", function(){
-  document.querySelector("body").style.height = document.documentElement.clientHeight + "px";
-  document.querySelector("body").style.width = document.documentElement.clientWidth + "px";
-  body.style.backgroundImage = body.style.backgroundImage
-});
-document.querySelector('#settings').addEventListener("click", function() {
-  // if (chrome.runtime.openOptionsPage) {
-  //   chrome.runtime.openOptionsPage();
-  // } else {
-     window.open(chrome.runtime.getURL('options.html'));
-  // }
-});
-
-document.querySelector('#download').addEventListener('click', function () {
-  chrome.storage.local.get(['download_url'], function(data){
-    chrome.downloads.download({
-      url: data.download_url
-    });
-  })
-})
-
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.msg == "refresh")
-      sendResponse({status: "OK"});
-      location.reload();
-  }
-);
-
-$('#searcher').click(function() {
-  var query = $('#query').value
-});
-
-const q = $('#query');
-
-  $("#form").submit(function(e) {
-      e.preventDefault();
-      console.log(q.value)
-      chrome.search.query({text: q.val()});
-  });
-
-function doNothing() {
-  console.log("c")
-}
 
 function checkStuff(data) {
   var body = document.querySelector("body");
   dt = new Date();
-  if (data.expires_date != dt.getDate() && data.expires_month != dt.getMonth() && data.expires_year != dt.getFullYear()) {
+  if (data.expires_date != dt.getDate() || data.expires_month != dt.getMonth() || data.expires_year != dt.getFullYear()) {
     get_set()
     if (data.quotes){
       body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url('" + data.url_img + "')";
@@ -145,3 +111,49 @@ function checkStuff(data) {
     body.style.height = document.documentElement.clientHeight + "px"
   }
 }
+
+// Background Resize
+
+document.querySelector("body").addEventListener("onresize", function(){
+  document.querySelector("body").style.height = document.documentElement.clientHeight + "px";
+  document.querySelector("body").style.width = document.documentElement.clientWidth + "px";
+  body.style.backgroundImage = body.style.backgroundImage
+});
+
+// Buttons and Attribution
+
+document.querySelector('#settings').addEventListener("click", function() {
+  window.open(chrome.runtime.getURL('options.html'));
+});
+
+document.querySelector('#download').addEventListener('click', function () {
+  chrome.storage.local.get(['download_url'], function(data){
+    chrome.downloads.download({
+      url: data.download_url
+    });
+  })
+})
+
+// Refresh when Save & Go Back button pressed on options page
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.msg == "refresh")
+      sendResponse({status: "OK"});
+      location.reload();
+  }
+);
+
+// Search Box
+
+$('#searcher').click(function() {
+  var query = $('#query').value
+});
+
+const q = $('#query');
+
+  $("#form").submit(function(e) {
+      e.preventDefault();
+      console.log(q.value)
+      chrome.search.query({text: q.val()});
+  });
