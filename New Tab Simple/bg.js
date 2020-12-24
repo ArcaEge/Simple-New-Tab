@@ -35,7 +35,7 @@ function get_set_local(data) {
     d = new Date()
     chrome.storage.local.set({'url_img': result.urls.full})
     chrome.storage.local.set({'description': result.alt_description})
-    chrome.storage.local.set({'download_url': result.links.download})
+    chrome.storage.local.set({'download_url': result.links.download_location})
     chrome.storage.local.set({'html_url': result.links.html})
     chrome.storage.local.set({'user': result.user.links.html})
     chrome.storage.local.set({'username': result.user.name})
@@ -57,7 +57,7 @@ function get_set_sync(data) {
     d = new Date()
     chrome.storage.sync.set({'url_img': result.urls.full})
     chrome.storage.sync.set({'description': result.alt_description})
-    chrome.storage.sync.set({'download_url': result.links.download})
+    chrome.storage.sync.set({'download_url': result.links.download_location})
     chrome.storage.sync.set({'html_url': result.links.html})
     chrome.storage.sync.set({'user': result.user.links.html})
     chrome.storage.sync.set({'username': result.user.name})
@@ -142,8 +142,10 @@ document.querySelector('#settings').addEventListener("click", function() {
 
 document.querySelector('#download').addEventListener('click', function () {
   chrome.storage.local.get(['download_url'], function(data){
-    chrome.downloads.download({
-      url: data.download_url
+    $.getJSON((data.download_url + "?client_id=b-CX8HO3iHzUXewY5dAkVv0WE4pYJHzyGaZwEbvk5TM"), function (result) {
+      chrome.downloads.download({
+        url: result.url
+      });
     });
   })
 })
@@ -191,10 +193,8 @@ function main_local() {
         if (data.changeQuote == 2) {
           $(document).ready(function() {
             var dt = new Date();
-            if (data.quote != undefined && data.author != undefined) {
-              if (data.expires_date == dt.getDate() && data.expires_month == dt.getMonth() && data.expires_year == dt.getFullYear()) {
+            if ((data.quote != undefined && data.author != undefined) && (data.expires_date == dt.getDate() && data.expires_month == dt.getMonth() && data.expires_year == dt.getFullYear())) {
                 show_quote(data.quote, data.author)
-              }
             } else {
               fetch("https://type.fit/api/quotes")
               .then(response => response.json())
@@ -245,10 +245,8 @@ function main_sync() {
         if (data.changeQuote == 2) {
           $(document).ready(function() {
           var dt = new Date();
-            if (data.quote != undefined && data.author != undefined) {
-              if (data.expires_date == dt.getDate() && data.expires_month == dt.getMonth() && data.expires_year == dt.getFullYear()) {
+            if ((data.quote != undefined && data.author != undefined) && (data.expires_date == dt.getDate() && data.expires_month == dt.getMonth() && data.expires_year == dt.getFullYear())) {
                 show_quote(data.quote, data.author)
-              }
             } else {
               fetch("https://type.fit/api/quotes")
               .then(response => response.json())
