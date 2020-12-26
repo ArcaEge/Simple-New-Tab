@@ -6,7 +6,7 @@
     },
   "version": "1.2",
   "manifest_version": 3,
-  "permissions": ["storage", "downloads", "search"],
+  "permissions": ["storage", "downloads", "search", "unlimitedStorage"],
   "chrome_url_overrides": {
     "newtab": "NewTab.html"
   },

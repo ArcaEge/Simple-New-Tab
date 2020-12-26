@@ -98,7 +98,6 @@ function checkStuff(data) {
         body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url('" + data.url_img + "')";
       });
       main();
-      console.log("hiii")
     } else {
       $(document).ready(function() {
         body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1)), url('" + data.url_img + "')";
@@ -189,7 +188,7 @@ function show_quote(qt, thr){
 function main_local() {
   chrome.storage.local.get(['quotes'], function(data){
     if (data.quotes){
-      chrome.storage.local.get(['quote', 'author', 'changeQuote', 'expires_date', 'expires_month', 'expires_year'], function(data){
+      chrome.storage.local.get(['quote', 'author', 'changeQuote', 'expires_date', 'expires_month', 'expires_year', 'url_img'], function(data){
         if (data.changeQuote == 2) {
           $(document).ready(function() {
             var dt = new Date();
@@ -211,8 +210,12 @@ function main_local() {
                 // console.log(qte)
                 chrome.storage.local.set({'quote': qte[0]})
                 chrome.storage.local.set({'author': qte[1]})
-                show_quote(qte[0], qte[1])
-            });
+                chrome.storage.local.get(['quote', 'author'], function(dta){
+                  show_quote(dta.quote, dta.author)
+                  body = $("body");
+                  body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url('" + data.url_img + "')";
+                });
+              });
             }
           })
         } else {
@@ -241,10 +244,10 @@ function main_local() {
 function main_sync() {
   chrome.storage.sync.get(['quotes'], function(data){
     if (data.quotes){
-      chrome.storage.sync.get(['quote', 'author', 'changeQuote', 'expires_date', 'expires_month', 'expires_year'], function(data){
+      chrome.storage.sync.get(['quote', 'author', 'changeQuote', 'expires_date', 'expires_month', 'expires_year', 'url_img'], function(data){
         if (data.changeQuote == 2) {
           $(document).ready(function() {
-          var dt = new Date();
+            var dt = new Date();
             if ((data.quote != undefined && data.author != undefined) && (data.expires_date == dt.getDate() && data.expires_month == dt.getMonth() && data.expires_year == dt.getFullYear())) {
                 show_quote(data.quote, data.author)
             } else {
@@ -263,7 +266,11 @@ function main_sync() {
                 // console.log(qte)
                 chrome.storage.sync.set({'quote': qte[0]})
                 chrome.storage.sync.set({'author': qte[1]})
-                show_quote(qte[0], qte[1])
+                chrome.storage.sync.get(['quote', 'author'], function(dta){
+                  show_quote(dta.quote, dta.author)
+                  body = $("body");
+                  body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url('" + data.url_img + "')";
+                });
             });
             }
           })
