@@ -16,15 +16,27 @@
   <h2><small>Background Image</small></h2>
   Type of random image:
   <select id="image_type" class="custom-select mt-1">
-    <option value="wallpapers">All</option>
-    <option value="wallpapers landscapes">Landscapes</option>
-    <option value="wallpapers mountains">Mountains</option>
-    <!-- <option value="wallpapers beach and sea">Beach</option> -->
-    <option value="wallpapers animals">Animals</option>
-    <option value="wallpapers space starry night">Space</option>
-    <option value="wallpapers textures&patterns">Textures & Patterns</option>
-    <option value="wallpapers abstract">Abstract</option>
+    <option value="">Featured</option>
+    <!-- <option value="black&white">Black & White</option> -->
+    <option value="landscapes and mountains">Landscapes</option>
+    <option value="forest">Forests</option>
+    <option value="beach">Beach</option>
+    <option value="animals">Animals</option>
+    <option value="space">Space</option>
+    <option value="textures&patterns">Textures & Patterns</option>
+    <option value="abstract art">Abstract</option>
   </select>
+  <!-- <div class="btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-light active featured">
+      <input type="radio" name="options" id="option1" autocomplete="off" checked> Featured
+    </label>
+    <label class="btn btn-light">
+      <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+    </label>
+    <label class="btn btn-light">
+      <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+    </label>
+  </div> -->
   <hr>
   <h2><small>Quotes</small></h2>
   <div class="custom-control custom-switch">
@@ -56,5 +68,21 @@
   <script src="options.js"></script>
   <!-- <script src="bg.js"></script> -->
   <script src="bootstrap.js"></script>
+  <style>
+  .featured {
+    background-image: url('/Featured.jpg');
+    background-repeat:no-repeat;
+    background-size: 225px;
+    background-position: center;
+    height: 150px;
+    width: 150px;
+  }
+  .featured .active {
+    opacity: 0;
+  }
+  #option1 {
+    vertical-align: bottom;
+  }
+  </style>
 </body>
 </html>

@@ -29,7 +29,7 @@ function get_set(){
 }
 
 function get_set_local(data) {
-  var url = 'https://api.unsplash.com/photos/random?client_id=b-CX8HO3iHzUXewY5dAkVv0WE4pYJHzyGaZwEbvk5TM&content_filter=high&query=' + data.img_type;
+  var url = 'https://api.unsplash.com/photos/random?client_id=b-CX8HO3iHzUXewY5dAkVv0WE4pYJHzyGaZwEbvk5TM&featured=true&orientation=landscape&content_filter=high&query=' + data.img_type;
   console.log(url);
   $.getJSON(url, function (result) {
     d = new Date()
@@ -50,7 +50,7 @@ function get_set_local(data) {
   });
 }
 function get_set_sync(data) {
-  var url = 'https://api.unsplash.com/photos/random?client_id=b-CX8HO3iHzUXewY5dAkVv0WE4pYJHzyGaZwEbvk5TM&content_filter=high&query=' + data.img_type;
+  var url = 'https://api.unsplash.com/photos/random?client_id=b-CX8HO3iHzUXewY5dAkVv0WE4pYJHzyGaZwEbvk5TM&featured=true&orientation=landscape&content_filter=high&query=' + data.img_type;
   console.log(url);
   console.log(data);
   $.getJSON(url, function (result) {
@@ -212,7 +212,7 @@ function main_local() {
                 chrome.storage.local.set({'author': qte[1]})
                 chrome.storage.local.get(['quote', 'author'], function(dta){
                   show_quote(dta.quote, dta.author)
-                  body = $("body");
+                  body = document.querySelector("body");
                   body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url('" + data.url_img + "')";
                 });
               });
