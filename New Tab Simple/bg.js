@@ -268,7 +268,7 @@ function main_sync() {
                 chrome.storage.sync.set({'author': qte[1]})
                 chrome.storage.sync.get(['quote', 'author'], function(dta){
                   show_quote(dta.quote, dta.author)
-                  body = $("body");
+                  body = document.querySelector("body");
                   body.style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url('" + data.url_img + "')";
                 });
             });

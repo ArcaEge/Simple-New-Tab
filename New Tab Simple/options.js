@@ -135,3 +135,12 @@ checkbox.addEventListener('change', function() {
     document.getElementById('disable').classList.add("text-muted");
   }
 });
+
+$(function() {
+  chrome.storage.sync.get(["sync", "url_img"], function(data) {
+    if (data.sync) {
+      // document.querySelector(".container").style.backgroundImage = "linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('" + data.url_img + "')";
+      document.querySelector("body").style.backgroundImage = "linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.2)), linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.2)), url('" + data.url_img + "')";
+    }
+  })
+});

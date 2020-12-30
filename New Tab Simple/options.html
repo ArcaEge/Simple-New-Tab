@@ -7,82 +7,102 @@
   <!-- <script src="jquery2.js"></script> -->
   <script src="popper.js"></script>
 </head>
-<body class="container pt-3">
-  <div class="alert alert-success" id="alert">
-    <strong>Changes Saved</strong> Your changes have been saved
-  </div>
-  <h1>Simple New Tab <small>Settings</small></h1>
-  <hr>
-  <h2><small>Background Image</small></h2>
-  Type of random image:
-  <select id="image_type" class="custom-select mt-1">
-    <option value="">Featured</option>
-    <!-- <option value="black&white">Black & White</option> -->
-    <option value="landscapes and mountains">Landscapes</option>
-    <option value="forest">Forests</option>
-    <option value="beach">Beach</option>
-    <option value="animals">Animals</option>
-    <option value="space">Space</option>
-    <option value="textures&patterns">Textures & Patterns</option>
-    <option value="abstract art">Abstract</option>
-  </select>
-  <!-- <div class="btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-light active featured">
-      <input type="radio" name="options" id="option1" autocomplete="off" checked> Featured
-    </label>
-    <label class="btn btn-light">
-      <input type="radio" name="options" id="option2" autocomplete="off"> Radio
-    </label>
-    <label class="btn btn-light">
-      <input type="radio" name="options" id="option3" autocomplete="off"> Radio
-    </label>
-  </div> -->
-  <hr>
-  <h2><small>Quotes</small></h2>
-  <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input mb-1" id="quoteSwitch">
-    <label class="custom-control-label" for="quoteSwitch">Enable Quotes</label>
-  </div>
-  <div id="disable" class="mt-1 ml-3">
-    Change quote:
-    <div class="custom-control custom-radio">
-      <input type="radio" class="custom-control-input" id="newtab" name="change">
-      <label class="custom-control-label" for="newtab">Every time a new tab is opened</label>
+<body>
+  <div class="container mt-3 mb-3">
+    <div class="alert alert-success" id="alert">
+      <strong>Changes Saved</strong> Your changes have been saved
     </div>
-    <div class="custom-control custom-radio">
-      <input type="radio" class="custom-control-input" id="day" name="change">
-      <label class="custom-control-label" for="day">Every day</label>
+    <h1>Simple New Tab <small>Settings</small></h1>
+    <hr>
+    <h2><small>Background Image</small></h2>
+    Type of random image:
+    <select id="image_type" class="custom-select mt-1">
+      <option value="">Featured</option>
+      <!-- <option value="black&white">Black & White</option> -->
+      <option value="landscapes and mountains">Landscapes</option>
+      <option value="forest">Forests</option>
+      <option value="beach">Beach</option>
+      <option value="animals">Animals</option>
+      <option value="space">Space</option>
+      <option value="textures&patterns">Textures & Patterns</option>
+      <option value="abstract art">Abstract</option>
+    </select>
+    <div class="bg-type">
+      <!-- <label class="active featured" id=""> -->
+        <button class="active featured btn btn-secondary" id="option1">Featured</button>
+      <!-- </label> -->
+      <label class="btn btn-light">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+      </label>
+      <label class="btn btn-light">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+      </label>
     </div>
-  </div>
-  <hr>
-  <div class="custom-control custom-checkbox" id="syncCheck">
-    <input type="checkbox" class="custom-control-input" id="syncCheckInner" name="sync">
-    <label class="custom-control-label" for="syncCheckInner">Sync with other devices signed into my Google Account
-    <small class="ml-1 text-muted">Sync the settings, quote and picture of the day with other devices signed into your Google account.</small></label>
-  </div>
+    <hr>
+    <h2><small>Quotes</small></h2>
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input mb-1" id="quoteSwitch">
+      <label class="custom-control-label" for="quoteSwitch">Enable Quotes</label>
+    </div>
+    <div id="disable" class="mt-1 ml-3">
+      Change quote:
+      <div class="custom-control custom-radio">
+        <input type="radio" class="custom-control-input" id="newtab" name="change">
+        <label class="custom-control-label" for="newtab">Every time a new tab is opened</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" class="custom-control-input" id="day" name="change">
+        <label class="custom-control-label" for="day">Every day</label>
+      </div>
+    </div>
+    <hr>
+    <div class="custom-control custom-checkbox" id="syncCheck">
+      <input type="checkbox" class="custom-control-input" id="syncCheckInner" name="sync">
+      <label class="custom-control-label" for="syncCheckInner">Sync with other devices signed into my Google Account
+      <small class="ml-1 text-muted">Sync the settings, quote and picture of the day with other devices signed into your Google account.</small></label>
+    </div>
 
-  <div id="status"></div>
-  <button id="save" class="btn btn-outline-dark mt-2">Save</button>
-  <button href="NewTab.html" class="btn btn-outline-primary mt-2" id="back">Save and Go Back</button>
-  <a href="NewTab.html" class="btn btn-outline-danger mt-2" id="discard">Discard Changes and Go Back</a>
-  <script src="options.js"></script>
-  <!-- <script src="bg.js"></script> -->
-  <script src="bootstrap.js"></script>
-  <style>
-  .featured {
-    background-image: url('/Featured.jpg');
-    background-repeat:no-repeat;
-    background-size: 225px;
-    background-position: center;
-    height: 150px;
-    width: 150px;
-  }
-  .featured .active {
-    opacity: 0;
-  }
-  #option1 {
-    vertical-align: bottom;
-  }
-  </style>
+    <div id="status"></div>
+    <button id="save" class="btn btn-outline-dark mt-2">Save</button>
+    <button href="NewTab.html" class="btn btn-outline-primary mt-2" id="back">Save and Go Back</button>
+    <a href="NewTab.html" class="btn btn-outline-danger mt-2" id="discard">Discard Changes and Go Back</a>
+    <script src="options.js"></script>
+    <!-- <script src="bg.js"></script> -->
+    <script src="bootstrap.js"></script>
+    <style>
+.featured {
+  background-image: url('/Featured.jpg');
+  background-repeat: no-repeat;
+  background-size: 185px;
+  background-position: center;
+  height: 125px;
+  width: 125px;
+}
+.featured .active {
+  opacity: 0;
+}
+#option1 {
+  vertical-align: bottom;
+}
+
+.bg-type .btn {
+  border-width: 0px;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+
+}
+    </style>
+  </div>
 </body>
 </html>
